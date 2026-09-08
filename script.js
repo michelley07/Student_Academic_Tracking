@@ -1,207 +1,252 @@
-// ==== UTILITIES ====
+// ===== UTILITY FUNCTIONS =====
 function showSection(id) {
-    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     event.target.classList.add('active');
 }
 
 function showExamTab(id) {
-    document.querySelectorAll('.exam-tab').forEach(t=>t.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.exam-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     event.target.classList.add('active');
 }
 
-function getColor(score) {
-    if(score>=80) return 'a';
-    if(score>=50) return 'b';
-    return 'c';
+function getColorClass(score) {
+    if(score >= 80) return 'excellent';
+    if(score >= 50) return 'average';
+    return 'needsimprove';
 }
 
-// ==== SUBJEK PERLU FOKUS ====
-let focusList = JSON.parse(localStorage.getItem('focusList')||'[]');
-function renderFocus(){
-    let html='';
-    focusList.forEach((r,i)=>{
+// ===== FOCUS SUBJECTS =====
+let focusList = JSON.parse(localStorage.getItem('focusList') || '[]');
+function renderFocus() {
+    const table = document.getElementById('focusTable');
+    let html = '';
+    focusList.forEach((r, i) => {
         html += `<tr><td>${i+1}</td><td>${r.subject}</td><td>${r.reason}</td><td>${r.target}%</td></tr>`;
     });
-    document.getElementById('focusTable').innerHTML=html;
+    table.innerHTML = html;
 }
-function addFocusSubject(){
-    let subj=document.getElementById('focusSubject').value;
-    let reason=document.getElementById('focusReason').value;
-    let target=document.getElementById('focusTarget').value;
-    if(!subj||!reason||!target) return alert('Isi semua ruang!');
-    focusList.push({subject:subj,reason:reason,target:target});
-    localStorage.setItem('focusList',JSON.stringify(focusList));
+function addFocusSubject() {
+    const subject = document.getElementById('focusSubject').value;
+    const reason = document.getElementById('focusReason').value;
+    const target = document.getElementById('focusTarget').value;
+    if(!subject || !reason || !target) return alert('Please fill in all fields!');
+    focusList.push({ subject, reason, target });
+    localStorage.setItem('focusList', JSON.stringify(focusList));
     renderFocus();
-    document.getElementById('focusSubject').value='';
-    document.getElementById('focusReason').value='';
-    document.getElementById('focusTarget').value='';
+    document.getElementById('focusSubject').value = '';
+    document.getElementById('focusReason').value = '';
+    document.getElementById('focusTarget').value = '';
 }
 
-// ==== REKOD MC ====
-let mcList = JSON.parse(localStorage.getItem('mcList')||'[]');
-function renderMC(){
-    let html='';
-    mcList.forEach((r,i)=>{
-        html += `<tr><td>${i+1}</td><td>${r.date}</td><td>${r.days}</td><td>${r.reason}</td><td><button onclick="delMC(${i})">Padam</button></td></tr>`;
+// ===== MEDICAL LEAVE / MC =====
+let mcList = JSON.parse(localStorage.getItem('mcList') || '[]');
+function renderMC() {
+    const table = document.getElementById('mcTable');
+    let html = '';
+    mcList.forEach((r, i) => {
+        html += `<tr><td>${i+1}</td><td>${r.date}</td><td>${r.days}</td><td>${r.reason}</td>
+            <td><button onclick="deleteMC(${i})">Delete</button></td></tr>`;
     });
-    document.getElementById('mcTable').innerHTML=html;
+    table.innerHTML = html;
 }
-function addMC(){
-    let date=document.getElementById('mcDate').value;
-    let days=document.getElementById('mcDays').value;
-    let reason=document.getElementById('mcReason').value;
-    if(!date||!days||!reason) return alert('Isi semua ruang!');
-    mcList.push({date:date,days:days,reason:reason});
-    localStorage.setItem('mcList',JSON.stringify(mcList));
+function addMC() {
+    const date = document.getElementById('mcDate').value;
+    const days = document.getElementById('mcDays').value;
+    const reason = document.getElementById('mcReason').value;
+    if(!date || !days || !reason) return alert('Please fill in all fields!');
+    mcList.push({ date, days, reason });
+    localStorage.setItem('mcList', JSON.stringify(mcList));
     renderMC();
-    document.getElementById('mcDate').value='';
-    document.getElementById('mcDays').value='';
-    document.getElementById('mcReason').value='';
+    document.getElementById('mcDate').value = '';
+    document.getElementById('mcDays').value = '';
+    document.getElementById('mcReason').value = '';
 }
-function delMC(i){ if(confirm('Padam rekod ini?')){ mcList.splice(i,1); localStorage.setItem('mcList',JSON.stringify(mcList)); renderMC(); }}
+function deleteMC(i) {
+    if(confirm('Delete this record?')) {
+        mcList.splice(i, 1);
+        localStorage.setItem('mcList', JSON.stringify(mcList));
+        renderMC();
+    }
+}
 
-// ==== UJIAN PENGGAL ====
-let penggalList = JSON.parse(localStorage.getItem('penggalList')||'[]');
-function renderPenggal(){
-    let html='';
-    penggalList.forEach((r)=>{
-        let avg = ((r.p1+r.p2+r.p3)/3).toFixed(1);
-        html += `<tr><td>${r.subject}</td><td>${r.p1}%</td><td>${r.p2}%</td><td>${r.p3}%</td><td class="${getColor(avg)}">${avg}%</td></tr>`;
+// ===== TERM TEST RESULTS =====
+let termList = JSON.parse(localStorage.getItem('termList') || '[]');
+// Preload default data: BM → 80, 60, 70
+if(termList.length === 0) {
+    termList.push({ subject: 'Bahasa Melayu', t1: 80, t2: 60, t3: 70 });
+}
+function renderTerm() {
+    const table = document.getElementById('termTable');
+    let html = '';
+    termList.forEach(r => {
+        const avg = ((r.t1 + r.t2 + r.t3) / 3).toFixed(1);
+        const cls = getColorClass(avg);
+        html += `<tr><td>${r.subject}</td><td>${r.t1}%</td><td>${r.t2}%</td><td>${r.t3}%</td><td class="${cls}">${avg}%</td></tr>`;
     });
-    document.getElementById('penggalTable').innerHTML=html;
+    table.innerHTML = html;
 }
-function addPenggalResult(){
-    let s=document.getElementById('pSubj').value;
-    let p1=parseInt(document.getElementById('p1').value)||0;
-    let p2=parseInt(document.getElementById('p2').value)||0;
-    let p3=parseInt(document.getElementById('p3').value)||0;
-    if(!s) return alert('Isi nama subjek!');
-    penggalList.push({subject:s,p1:p1,p2:p2,p3:p3});
-    localStorage.setItem('penggalList',JSON.stringify(penggalList));
-    renderPenggal();
-    document.getElementById('pSubj').value='';
-    document.getElementById('p1').value='';
-    document.getElementById('p2').value='';
-    document.getElementById('p3').value='';
+function addTermResult() {
+    const subject = document.getElementById('tSubj').value;
+    const t1 = parseInt(document.getElementById('t1').value) || 0;
+    const t2 = parseInt(document.getElementById('t2').value) || 0;
+    const t3 = parseInt(document.getElementById('t3').value) || 0;
+    if(!subject) return alert('Please enter subject name!');
+    termList.push({ subject, t1, t2, t3 });
+    localStorage.setItem('termList', JSON.stringify(termList));
+    renderTerm();
+    document.getElementById('tSubj').value = '';
+    document.getElementById('t1').value = '';
+    document.getElementById('t2').value = '';
+    document.getElementById('t3').value = '';
 }
 
-// ==== SPM ====
-let spmList = JSON.parse(localStorage.getItem('spmList')||'[]');
-function renderSPM(){
-    let html='';
-    spmList.forEach((r,i)=>{
+// ===== PT3 RESULTS =====
+let pt3List = JSON.parse(localStorage.getItem('pt3List') || '[]');
+// Preload default PT3 data
+if(pt3List.length === 0) {
+    pt3List.push({ subject: 'Bahasa Melayu', mark: 72 });
+    pt3List.push({ subject: 'English Language', mark: 65 });
+    pt3List.push({ subject: 'Mathematics', mark: 78 });
+    pt3List.push({ subject: 'Science', mark: 68 });
+    pt3List.push({ subject: 'History', mark: 55 });
+}
+function renderPT3() {
+    const table = document.getElementById('pt3Table');
+    let html = '';
+    pt3List.forEach(r => {
+        const passed = r.mark >= 50;
+        const status = passed ? '<span style="color:green; font-weight:bold;">✅ PASSED</span>' : '<span style="color:red; font-weight:bold;">❌ FAILED</span>';
+        html += `<tr><td>${r.subject}</td><td>${r.mark}%</td><td>${status}</td></tr>`;
+    });
+    table.innerHTML = html;
+}
+function addPT3() {
+    const subject = document.getElementById('pt3Subj').value;
+    const mark = parseInt(document.getElementById('pt3Mark').value);
+    if(!subject || isNaN(mark)) return alert('Please enter subject and mark!');
+    pt3List.push({ subject, mark });
+    localStorage.setItem('pt3List', JSON.stringify(pt3List));
+    renderPT3();
+    document.getElementById('pt3Subj').value = '';
+    document.getElementById('pt3Mark').value = '';
+}
+
+// ===== SPM RESULTS =====
+let spmList = JSON.parse(localStorage.getItem('spmList') || '[]');
+function renderSPM() {
+    const table = document.getElementById('spmTable');
+    let html = '';
+    spmList.forEach(r => {
         html += `<tr><td>${r.subject}</td><td>${r.grade}</td><td>${r.year}</td></tr>`;
     });
-    document.getElementById('spmTable').innerHTML=html;
+    table.innerHTML = html;
 }
-function addSPM(){
-    let s=document.getElementById('spmSubj').value;
-    let g=document.getElementById('spmGrade').value;
-    let y=document.getElementById('spmYear').value;
-    if(!s||!g||!y) return alert('Isi semua ruang!');
-    spmList.push({subject:s,grade:g,year:y});
-    localStorage.setItem('spmList',JSON.stringify(spmList));
+function addSPM() {
+    const subject = document.getElementById('spmSubj').value;
+    const grade = document.getElementById('spmGrade').value;
+    const year = document.getElementById('spmYear').value;
+    if(!subject || !grade || !year) return alert('Please fill in all fields!');
+    spmList.push({ subject, grade, year });
+    localStorage.setItem('spmList', JSON.stringify(spmList));
     renderSPM();
-    document.getElementById('spmSubj').value='';
-    document.getElementById('spmGrade').value='';
-    document.getElementById('spmYear').value='';
+    document.getElementById('spmSubj').value = '';
+    document.getElementById('spmGrade').value = '';
+    document.getElementById('spmYear').value = '';
 }
 
-// ==== STPM ====
-let stpmList = JSON.parse(localStorage.getItem('stpmList')||'[]');
-function renderSTPM(){
-    let html='';
-    stpmList.forEach((r,i)=>{
-        html += `<tr><td>${r.subject}</td><td>${r.grade}</td><td>${r.period}</td></tr>`;
-    });
-    document.getElementById('stpmTable').innerHTML=html;
-}
-function addSTPM(){
-    let s=document.getElementById('stpmSubj').value;
-    let g=document.getElementById('stpmGrade').value;
-    let p=document.getElementById('stpmYear').value;
-    if(!s||!g||!p) return alert('Isi semua ruang!');
-    stpmList.push({subject:s,grade:g,period:p});
-    localStorage.setItem('stpmList',JSON.stringify(stpmList));
-    renderSTPM();
-    document.getElementById('stpmSubj').value='';
-    document.getElementById('stpmGrade').value='';
-    document.getElementById('stpmYear').value='';
-}
-
-// ==== KERJA RUMAH ====
-let hwList = JSON.parse(localStorage.getItem('hwList')||'[]');
+// ===== HOMEWORK =====
+let hwList = JSON.parse(localStorage.getItem('hwList') || '[]');
 let hwFilter = 'all';
-function renderHW(){
-    let list = hwFilter==='all' ? hwList : hwList.filter(x=>x.status===hwFilter);
-    let html='';
-    list.forEach((r,i)=>{
+function renderHomework() {
+    let list = hwFilter === 'all' ? hwList : hwList.filter(x => x.status === hwFilter);
+    let html = '';
+    list.forEach((r, i) => {
+        const statusText = r.status === 'pending' ? '⏳ Pending' : '✅ Completed';
+        const statusClass = r.status === 'pending' ? 'pending' : 'completed';
         html += `<div style="padding:12px; margin:8px 0; background:#f8f9fa; border-radius:8px;">
-            <strong>${r.subject}</strong> — ${r.task} <br>
-            Tarikh Hantar: ${r.duedate} | 
-            <span class="${r.status}">${r.status==='pending'?'⏳ Belum Siap':'✅ Sudah Siap'}</span>
-            <br>
-            <button onclick="toggleHW(${i})">Tukar Status</button>
-            <button onclick="delHW(${i})">Padam</button>
+            <strong>${r.subject}</strong> — ${r.task}<br>
+            Due Date: ${r.dueDate} | <span class="${statusClass}">${statusText}</span><br>
+            <button onclick="toggleHWStatus(${i})">Toggle Status</button>
+            <button onclick="deleteHW(${i})">Delete</button>
         </div>`;
     });
-    document.getElementById('hwList').innerHTML=html;
+    document.getElementById('hwList').innerHTML = html;
 }
-function filterHomework(f){ hwFilter=f; renderHW(); }
-function addHomework(){
-    let subj=document.getElementById('hwSubj').value;
-    let task=document.getElementById('hwTask').value;
-    let date=document.getElementById('hwDate').value;
-    if(!task||!date) return alert('Isi tugasan & tarikh!');
-    hwList.push({subject:subj,task:task,duedate:date,status:'pending'});
-    localStorage.setItem('hwList',JSON.stringify(hwList));
-    renderHW();
-    document.getElementById('hwTask').value='';
-    document.getElementById('hwDate').value='';
+function filterHomework(filter) {
+    hwFilter = filter;
+    renderHomework();
 }
-function toggleHW(i){ hwList[i].status = hwList[i].status==='pending'?'done':'pending'; localStorage.setItem('hwList',JSON.stringify(hwList)); renderHW(); }
-function delHW(i){ if(confirm('Padam tugasan ini?')){ hwList.splice(i,1); localStorage.setItem('hwList',JSON.stringify(hwList)); renderHW(); }}
+function addHomework() {
+    const subject = document.getElementById('hwSubj').value;
+    const task = document.getElementById('hwTask').value;
+    const dueDate = document.getElementById('hwDueDate').value;
+    if(!task || !dueDate) return alert('Please enter task and due date!');
+    hwList.push({ subject, task, dueDate, status: 'pending' });
+    localStorage.setItem('hwList', JSON.stringify(hwList));
+    renderHomework();
+    document.getElementById('hwTask').value = '';
+    document.getElementById('hwDueDate').value = '';
+}
+function toggleHWStatus(i) {
+    hwList[i].status = hwList[i].status === 'pending' ? 'completed' : 'pending';
+    localStorage.setItem('hwList', JSON.stringify(hwList));
+    renderHomework();
+}
+function deleteHW(i) {
+    if(confirm('Delete this homework?')) {
+        hwList.splice(i, 1);
+        localStorage.setItem('hwList', JSON.stringify(hwList));
+        renderHomework();
+    }
+}
 
-// ==== REKOD MARKAH ====
-let marksList = JSON.parse(localStorage.getItem('marksList')||'[]');
-function renderMarks(){
-    let html='';
-    marksList.forEach((r,i)=>{
-        let c = getColor(r.score);
+// ===== TEST MARKS =====
+let marksList = JSON.parse(localStorage.getItem('marksList') || '[]');
+function renderMarks() {
+    const table = document.getElementById('marksTable');
+    let html = '';
+    marksList.forEach((r, i) => {
+        const cls = getColorClass(r.score);
         html += `<tr>
             <td>${r.subject}</td>
-            <td>${r.test}</td>
+            <td>${r.testName}</td>
             <td>${r.score}/100</td>
-            <td class="${c}">${r.score}%</td>
-            <td><button onclick="delMark(${i})">Padam</button></td>
+            <td class="${cls}">${r.score}%</td>
+            <td><button onclick="deleteMark(${i})">Delete</button></td>
         </tr>`;
     });
-    document.getElementById('marksTable').innerHTML=html;
+    table.innerHTML = html;
 }
-function addMark(){
-    let subj=document.getElementById('mSubj').value;
-    let test=document.getElementById('mTest').value;
-    let score=parseInt(document.getElementById('mScore').value);
-    if(!test||isNaN(score)) return alert('Isi nama ujian & markah!');
-    marksList.push({subject:subj,test:test,score:score});
-    localStorage.setItem('marksList',JSON.stringify(marksList));
+function addMark() {
+    const subject = document.getElementById('mSubj').value;
+    const testName = document.getElementById('mTest').value;
+    const score = parseInt(document.getElementById('mScore').value);
+    if(!testName || isNaN(score)) return alert('Please enter test name and score!');
+    marksList.push({ subject, testName, score });
+    localStorage.setItem('marksList', JSON.stringify(marksList));
     renderMarks();
-    document.getElementById('mTest').value='';
-    document.getElementById('mScore').value='';
+    document.getElementById('mTest').value = '';
+    document.getElementById('mScore').value = '';
 }
-function delMark(i){ if(confirm('Padam markah ini?')){ marksList.splice(i,1); localStorage.setItem('marksList',JSON.stringify(marksList)); renderMarks(); }}
+function deleteMark(i) {
+    if(confirm('Delete this mark?')) {
+        marksList.splice(i, 1);
+        localStorage.setItem('marksList', JSON.stringify(marksList));
+        renderMarks();
+    }
+}
 
-// ==== ON LOAD ====
-window.onload = function(){
+// ===== LOAD ALL DATA ON PAGE START =====
+window.onload = function() {
     renderFocus();
     renderMC();
-    renderPenggal();
+    renderTerm();
+    renderPT3();
     renderSPM();
-    renderSTPM();
-    renderHW();
+    renderHomework();
     renderMarks();
 };
