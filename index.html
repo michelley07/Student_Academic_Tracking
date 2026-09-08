@@ -9,7 +9,7 @@
 <body>
 
     <header>
-        <h1>🏫 STUDENT ACADEMIC TRACKING SYSTEM</h1>
+        <h1>STUDENT ACADEMIC TRACKING SYSTEM</h1>
         <p>SMK Munshi Abdullah | Class: 4SS3 | Year: 2026</p>
         <p>Student Name: Clara Paya Shaverroy | Form Teacher: Mr. Razian Yacob</p>
     </header>
@@ -40,9 +40,9 @@
                 <hr>
                 <p><strong>7 Core Subjects:</strong></p>
                 <ul>
-                    <li>Bahasa Melayu (BM)</li>
-                    <li>English Language (BI)</li>
-                    <li>Mathematics (MT)</li>
+                    <li>Bahasa Melayu</li>
+                    <li>English Language</li>
+                    <li>Mathematics</li>
                     <li>Science</li>
                     <li>History</li>
                     <li>Geography</li>
@@ -303,54 +303,33 @@
             </div>
 
             <!-- PT3 -->
-            <div id="pt3" class="exam-tab">
-                <h3>📘 PT3 Results — Passing Mark: 50%</h3>
-                <div class="info-card">
-                    <table border="1" cellpadding="8" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Subject</th>
-                                <th>Mark Obtained</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="pt3Table">
-                            <tr>
-                                <td>Bahasa Melayu</td>
-                                <td>72</td>
-                                <td class="passed">✅ PASSED</td>
-                            </tr>
-                            <tr>
-                                <td>English Language</td>
-                                <td>65</td>
-                                <td class="passed">✅ PASSED</td>
-                            </tr>
-                            <tr>
-                                <td>Mathematics</td>
-                                <td>78</td>
-                                <td class="passed">✅ PASSED</td>
-                            </tr>
-                            <tr>
-                                <td>Science</td>
-                                <td>68</td>
-                                <td class="passed">✅ PASSED</td>
-                            </tr>
-                            <tr>
-                                <td>History</td>
-                                <td>55</td>
-                                <td class="passed">✅ PASSED</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <br>
-                <div class="form-row">
-                    <input type="text" id="pt3Subj" placeholder="Subject">
-                    <input type="number" id="pt3Mark" placeholder="Mark">
-                </div>
-                <button onclick="addPT3()">✅ Add PT3 Result</button>
-            </div>
-
+<div id="pt3" class="exam-tab">
+    <h3>📘 PT3 / PBD Results — Clara Paya Shaverroy</h3>
+    <div class="info-card">
+        <p><strong>Student Name:</strong> Clara Paya Shaverroy</p>
+        <p><strong>School:</strong> SMK Tabuan Jaya, Kuching, Sarawak</p>
+        <p><strong>Year:</strong> 2025 | <strong>Date Issued:</strong> 1 December 2025</p>
+        <p><strong>Minimum Passing Mark:</strong> 50%</p>
+        <hr>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Subject</th>
+                    <th>Mark %</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="pt3Table"></tbody>
+        </table>
+    </div>
+    <br>
+    <div class="form-row">
+        <input type="text" id="pt3Subj" placeholder="Subject Name">
+        <input type="number" id="pt3Mark" placeholder="Mark %">
+    </div>
+    <button onclick="addPT3()">✅ Add New PT3 Result</button>
+</div>
             <!-- SPM -->
             <div id="spm" class="exam-tab">
                 <h3>📗 SPM Results</h3>
