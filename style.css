@@ -6,14 +6,15 @@
 }
 
 body {
-    background: #f0f4f8;
+    background: #f7f9fc;
     padding: 20px;
     line-height: 1.6;
+    color: #334155;
 }
 
 header {
-    background: linear-gradient(135deg, #2c3e50, #3498db);
-    color: white;
+    background: linear-gradient(135deg, #f9a8d4, #fbcfe8);
+    color: #1e293b;
     padding: 25px;
     text-align: center;
     border-radius: 12px;
@@ -31,15 +32,16 @@ nav {
     padding: 10px 16px;
     border: none;
     border-radius: 8px;
-    background: #ecf0f1;
+    background: #f1f5f9;
     cursor: pointer;
     font-weight: 500;
     transition: all 0.3s;
+    color: #475569;
 }
 
 .nav-btn:hover, .nav-btn.active {
-    background: #3498db;
-    color: white;
+    background: #f9a8d4;
+    color: #1e293b;
 }
 
 .section {
@@ -55,14 +57,14 @@ nav {
 }
 
 h2 {
-    color: #2c3e50;
+    color: #1e293b;
     margin-bottom: 20px;
-    border-bottom: 2px solid #3498db;
+    border-bottom: 2px solid #f9a8d4;
     padding-bottom: 10px;
 }
 
 .info-card {
-    background: #f8f9fa;
+    background: #fef7ff;
     padding: 20px;
     border-radius: 10px;
 }
@@ -74,18 +76,18 @@ table {
 }
 
 th {
-    background: #3498db;
-    color: white;
+    background: #f9a8d4;
+    color: #1e293b;
     padding: 10px;
 }
 
 td {
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #e2e8f0;
 }
 
 tr:hover {
-    background: #f1f8ff;
+    background: #fdf2f8;
 }
 
 .form-group, .form-row {
@@ -96,13 +98,14 @@ input, select {
     width: 100%;
     padding: 10px;
     margin: 5px 0;
-    border: 1px solid #ccc;
+    border: 1px solid #cbd5e1;
     border-radius: 6px;
+    background: #fff;
 }
 
 button {
     padding: 10px 20px;
-    background: #27ae60;
+    background: #f472b6;
     color: white;
     border: none;
     border-radius: 6px;
@@ -112,7 +115,7 @@ button {
 }
 
 button:hover {
-    background: #219653;
+    background: #ec4899;
 }
 
 .tabs {
@@ -122,13 +125,13 @@ button:hover {
 }
 
 .tab-btn {
-    background: #ddd;
-    color: #333;
+    background: #f1f5f9;
+    color: #475569;
 }
 
 .tab-btn.active {
-    background: #3498db;
-    color: white;
+    background: #f9a8d4;
+    color: #1e293b;
 }
 
 .exam-tab {
@@ -145,15 +148,56 @@ button:hover {
     display: flex;
 }
 
-.pending { color: #e67e22; font-weight: bold; }
-.completed { color: #27ae60; font-weight: bold; }
-.excellent { background: #27ae60; color:white; padding:3px 8px; border-radius:4px; }
-.average { background: #f39c12; color:white; padding:3px 8px; border-radius:4px; }
-.needsimprove { background: #e74c3c; color:white; padding:3px 8px; border-radius:4px; }
+.pending { color: #f59e0b; font-weight: bold; }
+.completed { color: #10b981; font-weight: bold; }
 
-hr { margin: 15px 0; border: 1px solid #ddd; }
+.excellent {
+    background: #dcfce7;
+    color: #166534;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.average {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.needsimprove {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.passed {
+    background: #dcfce7;
+    color: #166534;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.failed {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+hr {
+    margin: 15px 0;
+    border: 1px solid #e2e8f0;
+}
 
 @media(max-width:768px){
-    nav{justify-content:center;}
-    table{font-size:13px;}
+    nav {
+        justify-content: center;
+    }
+    table {
+        font-size: 13px;
+    }
 }
