@@ -127,14 +127,20 @@ function addTermResult() {
     document.getElementById('t3').value = '';
 }
 
-// ===== PT3 RESULTS =====
+// ===== PT3 RESULTS — DARI LAPORAN PBD CLARA =====
 let pt3List = [];
-// PRELOAD PT3 DATA
-pt3List.push({ subject: 'Bahasa Melayu', mark: 72 });
-pt3List.push({ subject: 'English Language', mark: 65 });
-pt3List.push({ subject: 'Mathematics', mark: 78 });
-pt3List.push({ subject: 'Science', mark: 68 });
-pt3List.push({ subject: 'History', mark: 55 });
+// PRELOAD PT3 DATA FROM PBD REPORT
+pt3List.push({ subject: 'Bahasa Melayu', mark: 45 });
+pt3List.push({ subject: 'Bahasa Inggeris', mark: 82 });
+pt3List.push({ subject: 'Matematik', mark: 65 });
+pt3List.push({ subject: 'Sains', mark: 75 });
+pt3List.push({ subject: 'Sejarah', mark: 53 });
+pt3List.push({ subject: 'Pendidikan Moral', mark: 42 });
+pt3List.push({ subject: 'Seni Visual', mark: 60 });
+pt3List.push({ subject: 'Pendidikan Jasmani', mark: 78 });
+pt3List.push({ subject: 'Geografi', mark: 72 });
+pt3List.push({ subject: 'Bahasa Iban', mark: 85 });
+pt3List.push({ subject: 'Reka Cipta', mark: 88 });
 localStorage.setItem('pt3List', JSON.stringify(pt3List));
 
 function renderPT3() {
@@ -143,11 +149,18 @@ function renderPT3() {
     let html = '';
     pt3List.forEach(r => {
         const passed = r.mark >= 50;
-        const status = passed ? '<span class="passed">✅ PASSED</span>' : '<span class="failed">❌ FAILED</span>';
-        html += `<tr><td>${r.subject}</td><td>${r.mark}</td><td>${status}</td></tr>`;
+        const status = passed 
+            ? '<span class="passed">✅ PASSED</span>' 
+            : '<span class="failed">❌ NEED IMPROVEMENT</span>';
+        html += `<tr>
+            <td>${r.subject}</td>
+            <td>${r.mark}%</td>
+            <td>${status}</td>
+        </tr>`;
     });
     table.innerHTML = html;
 }
+
 function addPT3() {
     const subject = document.getElementById('pt3Subj').value;
     const mark = parseInt(document.getElementById('pt3Mark').value);
