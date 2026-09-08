@@ -14,13 +14,19 @@ function showExamTab(id) {
 }
 
 function getColorClass(score) {
-    if(score >= 80) return 'excellent';
+    if(score >= 75) return 'excellent';
     if(score >= 50) return 'average';
     return 'needsimprove';
 }
 
 // ===== FOCUS SUBJECTS =====
 let focusList = JSON.parse(localStorage.getItem('focusList') || '[]');
+// Preload default focus subjects
+if(focusList.length === 0) {
+    focusList.push({ subject: 'Bahasa Melayu', reason: 'Strengthen grammar & essay writing', target: 80 });
+    focusList.push({ subject: 'English Language', reason: 'Improve vocabulary & comprehension', target: 75 });
+    focusList.push({ subject: 'Mathematics', reason: 'Practice more problem-solving', target: 85 });
+}
 function renderFocus() {
     const table = document.getElementById('focusTable');
     let html = '';
@@ -75,9 +81,15 @@ function deleteMC(i) {
 
 // ===== TERM TEST RESULTS =====
 let termList = JSON.parse(localStorage.getItem('termList') || '[]');
-// Preload default data: BM → 80, 60, 70
+// Preload ALL 7 subjects with marks
 if(termList.length === 0) {
     termList.push({ subject: 'Bahasa Melayu', t1: 80, t2: 60, t3: 70 });
+    termList.push({ subject: 'English Language', t1: 55, t2: 48, t3: 62 });
+    termList.push({ subject: 'Mathematics', t1: 75, t2: 68, t3: 82 });
+    termList.push({ subject: 'Science', t1: 40, t2: 52, t3: 45 });
+    termList.push({ subject: 'History', t1: 60, t2: 50, t3: 58 });
+    termList.push({ subject: 'Geography', t1: 70, t2: 65, t3: 72 });
+    termList.push({ subject: 'Computer Science', t1: 35, t2: 42, t3: 38 });
 }
 function renderTerm() {
     const table = document.getElementById('termTable');
@@ -85,7 +97,14 @@ function renderTerm() {
     termList.forEach(r => {
         const avg = ((r.t1 + r.t2 + r.t3) / 3).toFixed(1);
         const cls = getColorClass(avg);
-        html += `<tr><td>${r.subject}</td><td>${r.t1}%</td><td>${r.t2}%</td><td>${r.t3}%</td><td class="${cls}">${avg}%</td></tr>`;
+
+        html += `<tr>
+            <td>${r.subject}</td>
+            <td>${r.t1}</td>
+            <td>${r.t2}</td>
+            <td>${r.t3}</td>
+            <td class="${cls}">${avg}</td>
+        </tr>`;
     });
     table.innerHTML = html;
 }
@@ -119,8 +138,8 @@ function renderPT3() {
     let html = '';
     pt3List.forEach(r => {
         const passed = r.mark >= 50;
-        const status = passed ? '<span style="color:green; font-weight:bold;">✅ PASSED</span>' : '<span style="color:red; font-weight:bold;">❌ FAILED</span>';
-        html += `<tr><td>${r.subject}</td><td>${r.mark}%</td><td>${status}</td></tr>`;
+        const status = passed ? '<span class="passed">✅ PASSED</span>' : '<span class="failed">❌ FAILED</span>';
+        html += `<tr><td>${r.subject}</td><td>${r.mark}</td><td>${status}</td></tr>`;
     });
     table.innerHTML = html;
 }
@@ -167,7 +186,7 @@ function renderHomework() {
     list.forEach((r, i) => {
         const statusText = r.status === 'pending' ? '⏳ Pending' : '✅ Completed';
         const statusClass = r.status === 'pending' ? 'pending' : 'completed';
-        html += `<div style="padding:12px; margin:8px 0; background:#f8f9fa; border-radius:8px;">
+        html += `<div style="padding:12px; margin:8px 0; background:#fef7ff; border-radius:8px;">
             <strong>${r.subject}</strong> — ${r.task}<br>
             Due Date: ${r.dueDate} | <span class="${statusClass}">${statusText}</span><br>
             <button onclick="toggleHWStatus(${i})">Toggle Status</button>
