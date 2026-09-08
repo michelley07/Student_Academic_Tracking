@@ -14,21 +14,23 @@ function showExamTab(id) {
 }
 
 function getColorClass(score) {
+    score = Number(score);
     if(score >= 75) return 'excellent';
     if(score >= 50) return 'average';
     return 'needsimprove';
 }
 
 // ===== FOCUS SUBJECTS =====
-let focusList = JSON.parse(localStorage.getItem('focusList') || '[]');
-// Preload default focus subjects
-if(focusList.length === 0) {
-    focusList.push({ subject: 'Bahasa Melayu', reason: 'Strengthen grammar & essay writing', target: 80 });
-    focusList.push({ subject: 'English Language', reason: 'Improve vocabulary & comprehension', target: 75 });
-    focusList.push({ subject: 'Mathematics', reason: 'Practice more problem-solving', target: 85 });
-}
+let focusList = [];
+// PRELOAD: 3 Focus Subjects as requested
+focusList.push({ subject: 'Bahasa Melayu', reason: 'Need to improve', target: 90 });
+focusList.push({ subject: 'English Language', reason: 'Need to improve', target: 90 });
+focusList.push({ subject: 'Mathematics', reason: 'Need to improve', target: 90 });
+localStorage.setItem('focusList', JSON.stringify(focusList));
+
 function renderFocus() {
     const table = document.getElementById('focusTable');
+    if(!table) return;
     let html = '';
     focusList.forEach((r, i) => {
         html += `<tr><td>${i+1}</td><td>${r.subject}</td><td>${r.reason}</td><td>${r.target}%</td></tr>`;
@@ -49,9 +51,10 @@ function addFocusSubject() {
 }
 
 // ===== MEDICAL LEAVE / MC =====
-let mcList = JSON.parse(localStorage.getItem('mcList') || '[]');
+let mcList = [];
 function renderMC() {
     const table = document.getElementById('mcTable');
+    if(!table) return;
     let html = '';
     mcList.forEach((r, i) => {
         html += `<tr><td>${i+1}</td><td>${r.date}</td><td>${r.days}</td><td>${r.reason}</td>
@@ -80,19 +83,20 @@ function deleteMC(i) {
 }
 
 // ===== TERM TEST RESULTS =====
-let termList = JSON.parse(localStorage.getItem('termList') || '[]');
-// Preload ALL 7 subjects with marks
-if(termList.length === 0) {
-    termList.push({ subject: 'Bahasa Melayu', t1: 80, t2: 60, t3: 70 });
-    termList.push({ subject: 'English Language', t1: 55, t2: 48, t3: 62 });
-    termList.push({ subject: 'Mathematics', t1: 75, t2: 68, t3: 82 });
-    termList.push({ subject: 'Science', t1: 40, t2: 52, t3: 45 });
-    termList.push({ subject: 'History', t1: 60, t2: 50, t3: 58 });
-    termList.push({ subject: 'Geography', t1: 70, t2: 65, t3: 72 });
-    termList.push({ subject: 'Computer Science', t1: 35, t2: 42, t3: 38 });
-}
+let termList = [];
+// PRELOAD: ALL 7 SUBJECTS
+termList.push({ subject: 'Bahasa Melayu', t1: 80, t2: 60, t3: 70 });
+termList.push({ subject: 'English Language', t1: 55, t2: 48, t3: 62 });
+termList.push({ subject: 'Mathematics', t1: 75, t2: 68, t3: 82 });
+termList.push({ subject: 'Science', t1: 40, t2: 52, t3: 45 });
+termList.push({ subject: 'History', t1: 60, t2: 50, t3: 58 });
+termList.push({ subject: 'Geography', t1: 70, t2: 65, t3: 72 });
+termList.push({ subject: 'Computer Science', t1: 35, t2: 42, t3: 38 });
+localStorage.setItem('termList', JSON.stringify(termList));
+
 function renderTerm() {
     const table = document.getElementById('termTable');
+    if(!table) return;
     let html = '';
     termList.forEach(r => {
         const avg = ((r.t1 + r.t2 + r.t3) / 3).toFixed(1);
@@ -124,17 +128,18 @@ function addTermResult() {
 }
 
 // ===== PT3 RESULTS =====
-let pt3List = JSON.parse(localStorage.getItem('pt3List') || '[]');
-// Preload default PT3 data
-if(pt3List.length === 0) {
-    pt3List.push({ subject: 'Bahasa Melayu', mark: 72 });
-    pt3List.push({ subject: 'English Language', mark: 65 });
-    pt3List.push({ subject: 'Mathematics', mark: 78 });
-    pt3List.push({ subject: 'Science', mark: 68 });
-    pt3List.push({ subject: 'History', mark: 55 });
-}
+let pt3List = [];
+// PRELOAD PT3 DATA
+pt3List.push({ subject: 'Bahasa Melayu', mark: 72 });
+pt3List.push({ subject: 'English Language', mark: 65 });
+pt3List.push({ subject: 'Mathematics', mark: 78 });
+pt3List.push({ subject: 'Science', mark: 68 });
+pt3List.push({ subject: 'History', mark: 55 });
+localStorage.setItem('pt3List', JSON.stringify(pt3List));
+
 function renderPT3() {
     const table = document.getElementById('pt3Table');
+    if(!table) return;
     let html = '';
     pt3List.forEach(r => {
         const passed = r.mark >= 50;
@@ -155,9 +160,10 @@ function addPT3() {
 }
 
 // ===== SPM RESULTS =====
-let spmList = JSON.parse(localStorage.getItem('spmList') || '[]');
+let spmList = [];
 function renderSPM() {
     const table = document.getElementById('spmTable');
+    if(!table) return;
     let html = '';
     spmList.forEach(r => {
         html += `<tr><td>${r.subject}</td><td>${r.grade}</td><td>${r.year}</td></tr>`;
@@ -178,10 +184,10 @@ function addSPM() {
 }
 
 // ===== HOMEWORK =====
-let hwList = JSON.parse(localStorage.getItem('hwList') || '[]');
+let hwList = [];
 let hwFilter = 'all';
 function renderHomework() {
-    let list = hwFilter === 'all' ? hwList : hwList.filter(x => x.status === hwFilter);
+    const list = hwFilter === 'all' ? hwList : hwList.filter(x => x.status === hwFilter);
     let html = '';
     list.forEach((r, i) => {
         const statusText = r.status === 'pending' ? '⏳ Pending' : '✅ Completed';
@@ -193,7 +199,8 @@ function renderHomework() {
             <button onclick="deleteHW(${i})">Delete</button>
         </div>`;
     });
-    document.getElementById('hwList').innerHTML = html;
+    const container = document.getElementById('hwList');
+    if(container) container.innerHTML = html;
 }
 function filterHomework(filter) {
     hwFilter = filter;
@@ -224,9 +231,10 @@ function deleteHW(i) {
 }
 
 // ===== TEST MARKS =====
-let marksList = JSON.parse(localStorage.getItem('marksList') || '[]');
+let marksList = [];
 function renderMarks() {
     const table = document.getElementById('marksTable');
+    if(!table) return;
     let html = '';
     marksList.forEach((r, i) => {
         const cls = getColorClass(r.score);
