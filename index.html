@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,346 +10,399 @@
 
     <header>
         <h1>🏫 STUDENT ACADEMIC TRACKING SYSTEM</h1>
-        <p>Clara Paya Shaverroy — Tingkatan 4</p>
+        <p>SMK Munshi Abdullah | Class: 4SS3 | Year: 2026</p>
+        <p>Student Name: Clara Paya Shaverroy | Form Teacher: Mr. Razian Yacob</p>
     </header>
 
     <nav>
-        <button class="nav-btn active" onclick="showSection('home')">Utama</button>
-        <button class="nav-btn" onclick="showSection('class')">Jadual Kelas</button>
-        <button class="nav-btn" onclick="showSection('sports')">Rumah Sukan</button>
-        <button class="nav-btn" onclick="showSection('focus')">Subjek Fokus</button>
-        <button class="nav-btn" onclick="showSection('mc')">Rekod MC</button>
-        <button class="nav-btn" onclick="showSection('exam')">Keputusan Peperiksaan</button>
-        <button class="nav-btn" onclick="showSection('homework')">Kerja Rumah</button>
-        <button class="nav-btn" onclick="showSection('marks')">Rekod Markah</button>
+        <button class="nav-btn active" onclick="showSection('home')">Home</button>
+        <button class="nav-btn" onclick="showSection('timetable')">Class Timetable</button>
+        <button class="nav-btn" onclick="showSection('sports')">Sports House</button>
+        <button class="nav-btn" onclick="showSection('focus')">Focus Subjects</button>
+        <button class="nav-btn" onclick="showSection('mc')">Medical Leave</button>
+        <button class="nav-btn" onclick="showSection('exam')">Exam Results</button>
+        <button class="nav-btn" onclick="showSection('homework')">Homework</button>
+        <button class="nav-btn" onclick="showSection('marks')">Test Marks</button>
     </nav>
 
     <main>
 
-        <!-- ============== BAHAGIAN UTAMA ============== -->
+        <!-- ========== HOME ========== -->
         <section id="home" class="section active">
-            <h2>👋 Selamat Datang</h2>
+            <h2>👋 Welcome</h2>
             <div class="info-card">
-                <p><strong>Nama Pelajar:</strong> Clara Paya Shaverroy</p>
-                <p><strong>Tingkatan:</strong> 4</p>
-                <p><strong>Tahun:</strong> 2026</p>
-                <p><strong>7 Subjek Teras:</strong></p>
+                <p><strong>Student Name:</strong> Clara Paya Shaverroy</p>
+                <p><strong>School:</strong> SMK Munshi Abdullah</p>
+                <p><strong>Class:</strong> 4SS3</p>
+                <p><strong>Form Teacher:</strong> Mr. Razian Yacob</p>
+                <p><strong>Year:</strong> 2026</p>
+                <p><strong>Sports House:</strong> 🟢 GREEN</p>
+                <hr>
+                <p><strong>7 Core Subjects:</strong></p>
                 <ul>
-                    <li>Bahasa Melayu</li>
-                    <li>Bahasa Inggeris</li>
-                    <li>Matematik</li>
-                    <li>Sains</li>
-                    <li>Sejarah</li>
-                    <li>Geografi</li>
-                    <li>Sains Komputer</li>
+                    <li>Bahasa Melayu (BM)</li>
+                    <li>English Language (BI)</li>
+                    <li>Mathematics (MT)</li>
+                    <li>Science</li>
+                    <li>History</li>
+                    <li>Geography</li>
+                    <li>Computer Science</li>
                 </ul>
             </div>
         </section>
 
-        <!-- ============== JADUAL KELAS ============== -->
-        <section id="class" class="section">
-            <h2>📅 Jadual Kelas — Tingkatan 1 hingga 5</h2>
+        <!-- ========== CLASS TIMETABLE ========== -->
+        <section id="timetable" class="section">
+            <h2>📅 Class Timetable — 4SS3</h2>
             <div class="table-container">
-                <table border="1" cellpadding="8" cellspacing="0">
+                <table border="1" cellpadding="6" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Hari</th>
-                            <th>8:00-9:00</th>
-                            <th>9:00-10:00</th>
-                            <th>10:30-11:30</th>
-                            <th>11:30-12:30</th>
-                            <th>2:00-3:00</th>
-                            <th>3:00-4:00</th>
+                            <th>Day</th>
+                            <th>7:30–8:50</th>
+                            <th>9:00–10:20</th>
+                            <th>10:40–12:00</th>
+                            <th>12:00–12:40</th>
+                            <th>2:00–3:20</th>
+                            <th>3:20–4:40</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><b>Isnin</b></td>
+                            <td><b>Monday</b></td>
                             <td>Bahasa Melayu</td>
-                            <td>Sejarah</td>
-                            <td>Matematik</td>
-                            <td>Bahasa Inggeris</td>
-                            <td>Sains Komputer</td>
-                            <td>Geografi</td>
+                            <td>English</td>
+                            <td>Geography</td>
+                            <td>Mathematics</td>
+                            <td>History</td>
+                            <td>—</td>
                         </tr>
                         <tr>
-                            <td><b>Selasa</b></td>
-                            <td>Matematik</td>
-                            <td>Sains</td>
+                            <td><b>Tuesday</b></td>
+                            <td>Living Skills</td>
+                            <td>Science</td>
+                            <td>English</td>
+                            <td>Mathematics</td>
                             <td>Bahasa Melayu</td>
-                            <td>Sejarah</td>
-                            <td>Bahasa Inggeris</td>
-                            <td>Sains Komputer</td>
+                            <td>Computer / Moral</td>
                         </tr>
                         <tr>
-                            <td><b>Rabu</b></td>
-                            <td>Geografi</td>
-                            <td>Bahasa Inggeris</td>
-                            <td>Sains</td>
-                            <td>Matematik</td>
+                            <td><b>Wednesday</b></td>
+                            <td>Islamic/Moral Ed.</td>
+                            <td>Science</td>
                             <td>Bahasa Melayu</td>
-                            <td>Rekod Prestasi</td>
+                            <td>Physical Ed.</td>
+                            <td colspan="2">KOKURIKULUM</td>
                         </tr>
                         <tr>
-                            <td><b>Khamis</b></td>
-                            <td>Sains Komputer</td>
-                            <td>Geografi</td>
-                            <td>Bahasa Inggeris</td>
-                            <td>Sains</td>
-                            <td>Sejarah</td>
-                            <td>Matematik</td>
+                            <td><b>Thursday</b></td>
+                            <td>History</td>
+                            <td>English</td>
+                            <td>Geography</td>
+                            <td>Mathematics</td>
+                            <td>Living Skills</td>
+                            <td>—</td>
                         </tr>
                         <tr>
-                            <td><b>Jumaat</b></td>
+                            <td><b>Friday</b></td>
                             <td>Bahasa Melayu</td>
-                            <td>Matematik</td>
-                            <td>Sejarah</td>
-                            <td>Geografi</td>
-                            <td>Sains</td>
-                            <td>Bahasa Inggeris</td>
+                            <td>Mathematics</td>
+                            <td>History</td>
+                            <td>Science</td>
+                            <td>English</td>
+                            <td>Geography</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- ============== RUMAH SUKAN & ACARA ============== -->
+        <!-- ========== SPORTS HOUSE ========== -->
         <section id="sports" class="section">
-            <h2>🏅 Rumah Sukan & Acara</h2>
+            <h2>🏅 Sports House & Activities</h2>
             <div class="info-card">
-                <p><strong>Nama Rumah Sukan:</strong> <span style="color:red">MERAH</span></p>
-                <p><strong>Warna:</strong> Merah</p>
-                <h3>Acara Yang Disertai:</h3>
+                <p><strong>Sports House Name:</strong> <span style="color:green; font-weight:bold">GREEN</span></p>
+                <p><strong>House Color:</strong> 🟢 Green</p>
+                <h3>Events Participated:</h3>
                 <ul>
-                    <li>🏃‍♀️ Larian 100m & 200m</li>
-                    <li>🏃‍♀️ Larian Estafet 4 x 100m</li>
-                    <li>🤾 Bola Jaring</li>
-                    <li>🏊 Renang</li>
-                    <li>🧭 Merentas Desa</li>
+                    <li>🏃‍♀️ 100m & 200m Sprint</li>
+                    <li>🏃‍♀️ 4 × 100m Relay</li>
+                    <li>🤾 Netball</li>
+                    <li>🏊 Swimming</li>
+                    <li>🧭 Cross Country</li>
                 </ul>
             </div>
         </section>
 
-        <!-- ============== SUBJEK PERLU FOKUS ============== -->
+        <!-- ========== FOCUS SUBJECTS ========== -->
         <section id="focus" class="section">
-            <h2>🎯 Subjek Perlu Diberi Fokus</h2>
+            <h2>🎯 Subjects to Focus On</h2>
             <div class="info-card">
                 <table border="1" cellpadding="8" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Bil</th>
-                            <th>Subjek</th>
-                            <th>Sebab Fokus</th>
-                            <th>Sasaran Markah</th>
+                            <th>No.</th>
+                            <th>Subject</th>
+                            <th>Reason for Focus</th>
+                            <th>Target Score</th>
                         </tr>
                     </thead>
                     <tbody id="focusTable">
-                        <!-- Auto load from localStorage -->
+                        <tr>
+                            <td>1</td>
+                            <td>Bahasa Melayu</td>
+                            <td>Strengthen grammar & essay writing</td>
+                            <td>80%</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>English Language</td>
+                            <td>Improve vocabulary & comprehension</td>
+                            <td>75%</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Mathematics</td>
+                            <td>Practice more problem-solving</td>
+                            <td>85%</td>
+                        </tr>
                     </tbody>
                 </table>
                 <br>
                 <div class="form-group">
-                    <label>Subjek:</label>
-                    <input type="text" id="focusSubject" placeholder="Contoh: Matematik">
+                    <label>Subject:</label>
+                    <input type="text" id="focusSubject" placeholder="e.g. Science">
                 </div>
                 <div class="form-group">
-                    <label>Sebab Fokus:</label>
-                    <input type="text" id="focusReason" placeholder="Contoh: Kurang Menguasai Topik">
+                    <label>Reason for Focus:</label>
+                    <input type="text" id="focusReason" placeholder="e.g. Weak in calculations">
                 </div>
                 <div class="form-group">
-                    <label>Sasaran %:</label>
-                    <input type="number" id="focusTarget" placeholder="Contoh: 80">
+                    <label>Target %:</label>
+                    <input type="number" id="focusTarget" placeholder="e.g. 80">
                 </div>
-                <button onclick="addFocusSubject()">✅ Tambah Subjek Fokus</button>
+                <button onclick="addFocusSubject()">✅ Add Subject</button>
             </div>
         </section>
 
-        <!-- ============== REKOD MC ============== -->
+        <!-- ========== MEDICAL LEAVE (MC) ========== -->
         <section id="mc" class="section">
-            <h2>🏥 Rekod Cuti Sakit (MC)</h2>
+            <h2>🏥 Medical Leave Record</h2>
             <div class="info-card">
                 <table border="1" cellpadding="8" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Bil</th>
-                            <th>Tarikh MC</th>
-                            <th>Bilangan Hari</th>
-                            <th>Sebab</th>
-                            <th>Tindakan</th>
+                            <th>No.</th>
+                            <th>Date</th>
+                            <th>Days</th>
+                            <th>Reason</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody id="mcTable">
-                        <!-- Auto load from localStorage -->
-                    </tbody>
+                    <tbody id="mcTable"></tbody>
                 </table>
                 <br>
                 <div class="form-group">
-                    <label>Tarikh:</label>
+                    <label>Date:</label>
                     <input type="date" id="mcDate">
                 </div>
                 <div class="form-group">
-                    <label>Bilangan Hari:</label>
-                    <input type="number" id="mcDays" placeholder="Contoh: 2">
+                    <label>Number of Days:</label>
+                    <input type="number" id="mcDays" placeholder="e.g. 2">
                 </div>
                 <div class="form-group">
-                    <label>Sebab:</label>
-                    <input type="text" id="mcReason" placeholder="Contoh: Demam">
+                    <label>Reason:</label>
+                    <input type="text" id="mcReason" placeholder="e.g. Fever">
                 </div>
-                <button onclick="addMC()">✅ Tambah Rekod MC</button>
+                <button onclick="addMC()">✅ Add Record</button>
             </div>
         </section>
 
-        <!-- ============== KEPUTUSAN PEPERIKSAAN ============== -->
+        <!-- ========== EXAM RESULTS ========== -->
         <section id="exam" class="section">
-            <h2>📊 Keputusan Peperiksaan</h2>
+            <h2>📊 Examination Results</h2>
             <div class="tabs">
-                <button class="tab-btn active" onclick="showExamTab('penggal')">Ujian Penggal</button>
+                <button class="tab-btn active" onclick="showExamTab('term')">Term Tests</button>
+                <button class="tab-btn" onclick="showExamTab('pt3')">PT3</button>
                 <button class="tab-btn" onclick="showExamTab('spm')">SPM</button>
-                <button class="tab-btn" onclick="showExamTab('stpm')">STPM</button>
             </div>
 
-            <!-- UJIAN PENGGAL -->
-            <div id="penggal" class="exam-tab active">
-                <h3>📝 Keputusan Ujian Penggal</h3>
+            <!-- TERM TESTS -->
+            <div id="term" class="exam-tab active">
+                <h3>📝 Term Test Results</h3>
                 <table border="1" cellpadding="8" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Subjek</th>
-                            <th>Penggal 1</th>
-                            <th>Penggal 2</th>
-                            <th>Penggal 3</th>
-                            <th>Purata</th>
+                            <th>Subject</th>
+                            <th>Term 1</th>
+                            <th>Term 2</th>
+                            <th>Term 3</th>
+                            <th>Average</th>
                         </tr>
                     </thead>
-                    <tbody id="penggalTable">
-                        <!-- Load from localStorage -->
+                    <tbody id="termTable">
+                        <tr>
+                            <td>Bahasa Melayu</td>
+                            <td>80%</td>
+                            <td>60%</td>
+                            <td>70%</td>
+                            <td><span style="background:#f39c12; color:white; padding:3px 8px; border-radius:4px;">70%</span></td>
+                        </tr>
                     </tbody>
                 </table>
                 <br>
                 <div class="form-row">
-                    <input type="text" id="pSubj" placeholder="Subjek">
-                    <input type="number" id="p1" placeholder="P1 %">
-                    <input type="number" id="p2" placeholder="P2 %">
-                    <input type="number" id="p3" placeholder="P3 %">
+                    <input type="text" id="tSubj" placeholder="Subject Name">
+                    <input type="number" id="t1" placeholder="Term 1 %">
+                    <input type="number" id="t2" placeholder="Term 2 %">
+                    <input type="number" id="t3" placeholder="Term 3 %">
                 </div>
-                <button onclick="addPenggalResult()">✅ Simpan Keputusan</button>
+                <button onclick="addTermResult()">✅ Save Result</button>
+            </div>
+
+            <!-- PT3 -->
+            <div id="pt3" class="exam-tab">
+                <h3>📘 PT3 Results — Passing Marks Recorded</h3>
+                <div class="info-card">
+                    <p><strong>Minimum Passing Mark:</strong> 50%</p>
+                    <table border="1" cellpadding="8" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Mark Obtained</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pt3Table">
+                            <tr>
+                                <td>Bahasa Melayu</td>
+                                <td>72%</td>
+                                <td style="color:green; font-weight:bold;">✅ PASSED</td>
+                            </tr>
+                            <tr>
+                                <td>English Language</td>
+                                <td>65%</td>
+                                <td style="color:green; font-weight:bold;">✅ PASSED</td>
+                            </tr>
+                            <tr>
+                                <td>Mathematics</td>
+                                <td>78%</td>
+                                <td style="color:green; font-weight:bold;">✅ PASSED</td>
+                            </tr>
+                            <tr>
+                                <td>Science</td>
+                                <td>68%</td>
+                                <td style="color:green; font-weight:bold;">✅ PASSED</td>
+                            </tr>
+                            <tr>
+                                <td>History</td>
+                                <td>55%</td>
+                                <td style="color:green; font-weight:bold;">✅ PASSED</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <div class="form-row">
+                    <input type="text" id="pt3Subj" placeholder="Subject">
+                    <input type="number" id="pt3Mark" placeholder="Mark %">
+                </div>
+                <button onclick="addPT3()">✅ Add PT3 Result</button>
             </div>
 
             <!-- SPM -->
             <div id="spm" class="exam-tab">
-                <h3>📘 Keputusan SPM</h3>
+                <h3>📗 SPM Results</h3>
                 <table border="1" cellpadding="8" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Subjek</th>
-                            <th>Gred</th>
-                            <th>Tahun</th>
+                            <th>Subject</th>
+                            <th>Grade</th>
+                            <th>Year</th>
                         </tr>
                     </thead>
                     <tbody id="spmTable"></tbody>
                 </table>
                 <br>
                 <div class="form-row">
-                    <input type="text" id="spmSubj" placeholder="Subjek">
-                    <input type="text" id="spmGrade" placeholder="Gred (A+,A,...)">
-                    <input type="number" id="spmYear" placeholder="Tahun">
+                    <input type="text" id="spmSubj" placeholder="Subject">
+                    <input type="text" id="spmGrade" placeholder="Grade (A+, A, ...)">
+                    <input type="number" id="spmYear" placeholder="Year">
                 </div>
-                <button onclick="addSPM()">✅ Simpan Keputusan SPM</button>
-            </div>
-
-            <!-- STPM -->
-            <div id="stpm" class="exam-tab">
-                <h3>📗 Keputusan STPM</h3>
-                <table border="1" cellpadding="8" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Subjek</th>
-                            <th>Gred</th>
-                            <th>Tahun / Penggal</th>
-                        </tr>
-                    </thead>
-                    <tbody id="stpmTable"></tbody>
-                </table>
-                <br>
-                <div class="form-row">
-                    <input type="text" id="stpmSubj" placeholder="Subjek">
-                    <input type="text" id="stpmGrade" placeholder="Gred">
-                    <input type="text" id="stpmYear" placeholder="Tahun/Penggal">
-                </div>
-                <button onclick="addSTPM()">✅ Simpan Keputusan STPM</button>
+                <button onclick="addSPM()">✅ Save SPM Result</button>
             </div>
         </section>
 
-        <!-- ============== KERJA RUMAH ============== -->
+        <!-- ========== HOMEWORK ========== -->
         <section id="homework" class="section">
-            <h2>📚 Senarai Kerja Rumah</h2>
+            <h2>📚 Homework List</h2>
             <div class="filter-buttons">
-                <button onclick="filterHomework('all')">Semua</button>
-                <button onclick="filterHomework('pending')">⏳ Belum Siap</button>
-                <button onclick="filterHomework('done')">✅ Sudah Siap</button>
+                <button onclick="filterHomework('all')">All</button>
+                <button onclick="filterHomework('pending')">⏳ Pending</button>
+                <button onclick="filterHomework('completed')">✅ Completed</button>
             </div>
             <div id="hwList"></div>
             <br>
             <div class="form-group">
-                <label>Subjek:</label>
+                <label>Subject:</label>
                 <select id="hwSubj">
                     <option>Bahasa Melayu</option>
-                    <option>Bahasa Inggeris</option>
-                    <option>Matematik</option>
-                    <option>Sains</option>
-                    <option>Sejarah</option>
-                    <option>Geografi</option>
-                    <option>Sains Komputer</option>
+                    <option>English Language</option>
+                    <option>Mathematics</option>
+                    <option>Science</option>
+                    <option>History</option>
+                    <option>Geography</option>
+                    <option>Computer Science</option>
                 </select>
             </div>
             <div class="form-group">
-                <label>Tugasan:</label>
-                <input type="text" id="hwTask" placeholder="Tulis tugasan...">
+                <label>Assignment / Task:</label>
+                <input type="text" id="hwTask" placeholder="Enter task description...">
             </div>
             <div class="form-group">
-                <label>Tarikh Hantar:</label>
-                <input type="date" id="hwDate">
+                <label>Due Date:</label>
+                <input type="date" id="hwDueDate">
             </div>
-            <button onclick="addHomework()">✅ Tambah Kerja Rumah</button>
+            <button onclick="addHomework()">✅ Add Homework</button>
         </section>
 
-        <!-- ============== REKOD MARKAH ============== -->
+        <!-- ========== TEST MARKS ========== -->
         <section id="marks" class="section">
-            <h2>📝 Rekod Markah Ujian</h2>
+            <h2>📝 Test Marks Record</h2>
             <table border="1" cellpadding="8" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Subjek</th>
-                        <th>Ujian</th>
-                        <th>Markah /100</th>
-                        <th>Peratus</th>
-                        <th>Tindakan</th>
+                        <th>Subject</th>
+                        <th>Test Name</th>
+                        <th>Mark / 100</th>
+                        <th>Percentage</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody id="marksTable"></tbody>
             </table>
             <br>
             <div class="form-group">
-                <label>Subjek:</label>
+                <label>Subject:</label>
                 <select id="mSubj">
                     <option>Bahasa Melayu</option>
-                    <option>Bahasa Inggeris</option>
-                    <option>Matematik</option>
-                    <option>Sains</option>
-                    <option>Sejarah</option>
-                    <option>Geografi</option>
-                    <option>Sains Komputer</option>
+                    <option>English Language</option>
+                    <option>Mathematics</option>
+                    <option>Science</option>
+                    <option>History</option>
+                    <option>Geography</option>
+                    <option>Computer Science</option>
                 </select>
             </div>
             <div class="form-group">
-                <label>Nama Ujian:</label>
-                <input type="text" id="mTest" placeholder="Contoh: Ujian Bab 1">
+                <label>Test / Assessment Name:</label>
+                <input type="text" id="mTest" placeholder="e.g. Chapter 1 Test">
             </div>
             <div class="form-group">
-                <label>Markah (0-100):</label>
-                <input type="number" id="mScore" oninput="getColor(this.value)">
+                <label>Score (0–100):</label>
+                <input type="number" id="mScore" oninput="getColorClass(this.value)">
             </div>
-            <button onclick="addMark()">✅ Simpan Markah</button>
+            <button onclick="addMark()">✅ Save Mark</button>
         </section>
 
     </main>
